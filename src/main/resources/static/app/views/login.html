@@ -1,0 +1,40 @@
+ <div class="loginPage" ng-controller="loginController">
+ <form class="loginForm" name="loginForm">
+    	 <h2 style="margin-top: -20px;">Prediictool</h2>
+    	 
+    	   <md-input-container style="height:30px;">
+    	 	<div ng-show="errorMsg != null && errorMsg != ''">
+    	 	 	<div style = "color: red;">{{errorMsg}}</div>
+    	 	</div>
+           
+	     </md-input-container>
+	     
+	     <md-input-container style="height:40px;">
+          	<label style="font-weight:bold;font-size: 12px;">UserName</label>
+          	 <md-icon md-svg-src="assets/icons/userNameIcon.svg" class="name"></md-icon>
+	          <input required="" name="userName" ng-model="user.userName" ng-keydown="action($event.keyCode)" autofocus>
+	          <div ng-messages="loginForm.userName.$error">
+	            <div ng-message="required">UserName required.</div>
+	          </div>
+	     </md-input-container>
+	     
+	     <md-input-container style="height:30px;">
+          	<label style="font-weight:bold;font-size: 12px;">Password</label>
+          	<md-icon md-svg-src="assets/icons/password.svg" class="name"></md-icon>
+	          <input required="" type="password" name="password" ng-model="user.password" ng-keydown="action($event.keyCode)" >
+	          <div ng-messages="loginForm.password.$error">
+	            <div ng-message="required">Password required.</div>
+	          </div>
+	     </md-input-container>
+	     
+    <md-input-container>
+        <md-button style="width: 134px;font-size:11px;font-weight: bold;" ui-sref="forgetPassword">Forget Password ?</md-button>
+        <md-button style="width: 100px;font-size:11px;font-weight: bold;" ui-sref="register">Register Now</md-button>
+    </md-input-container> 
+	     
+      <md-input-container style="height:20px;margin-left: 20px;" class="md-block">
+        <md-button style="border:solid;border-width:1.5px;width:233px !important" ng-click="login()" ng-disabled="loginForm.$invalid">Login</md-button>
+      </md-input-container>
+      
+     </form> 
+     </div>

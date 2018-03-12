@@ -1,0 +1,210 @@
+<div layout="column" layout-fill ng-controller="homeController" dw-loading="nissan-spinner">
+    <header>
+	      <md-toolbar class="md-hue-2">
+			    <div class="md-toolbar-tools" style="background-color:#3f51b5">
+			        <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()">
+			          <md-icon md-svg-icon="assets/icons/menuWhiteIcon.svg" style="outline:none;" ></md-icon>
+			        </md-button>
+			        
+			        <h2 flex="" md-truncate="" style="text-align:left;color:#ffffff">PREDIICTOOL</h2>
+			
+			        <h2 flex="" md-truncate="" style="text-align:right;color:#ffffff">Welcome {{userName}} !</h2>
+			
+			       <!--  <md-button class="md-icon-button" aria-label="Favorite">
+			          <md-icon md-svg-icon="assets/icons/favoriteWhiteIcon.svg" style="outline:none;"></md-icon>
+			        </md-button> -->
+					
+					<img style="cursor: pointer;    margin-left: 20px;    width: 35px; " ng-click="logout()" src="assets/icons/logout.png" >
+			       <!--  <md-button class="md-icon-button" aria-label="More" ng-click="showMoreItems($event)">
+			          <md-icon md-svg-icon="assets/icons/moreWhiteIcon.svg" style="outline:none;" ng-click="showMoreItems($event)"></md-icon>
+			        </md-button> -->
+			      </div>
+	    	</md-toolbar> 
+    </header>
+
+    <main flex>
+		      <div style="background-color:white">
+		   		<md-content id="tabcontent" class="tabContent" style="background-color:white">
+		    	<!--  <md-sidenav class="md-sidenav-left" style="width:70px;" md-component-id="left" md-is-open="isSidenavOpen" md-whiteframe="4">
+		    	 
+		    	  	<md-button class="md-icon-button" aria-label="Settings" style="outline:none;height: 80px;width: 65px;"  ng-click="changeTab(0)">
+			          <md-icon md-svg-icon="assets/icons/list.svg" style="outline:none;height: 66px;width: 50px;" ></md-icon>
+			        </md-button>
+			          
+			         <md-button class="md-icon-button" aria-label="Settings" style="outline:none;height: 80px;width: 65px;"  ng-click="changeTab(0)">
+			          <md-icon md-svg-icon="assets/icons/fileUpload.svg" style="outline:none;height: 66px;width: 50px;" ></md-icon>
+			        </md-button>
+			        
+			         <md-button class="md-icon-button" aria-label="Settings" style="outline:none;height: 80px;width: 65px;"  ng-click="changeTab(1)">
+			          <md-icon md-svg-icon="assets/icons/analytics.svg" style="outline:none;height: 66px;width: 50px;" ></md-icon>
+			        </md-button>
+			        
+			         <md-button class="md-icon-button" aria-label="Settings" style="outline:none;height: 80px;width: 65px;"  ng-click="changeTab(2)">
+			          <md-icon md-svg-icon="assets/icons/dashboard.svg" style="outline:none;height: 66px;width: 50px;" ></md-icon>
+			        </md-button>
+			  	</md-sidenav>    -->
+			  	
+				<md-tabs md-dynamic-height="" md-border-bottom="" md-selected="selectedIndex">
+					      <md-tab id="uploadTab" label="File Upload" ng-disabled="isUploadTabDisabled">
+						        <md-content style="background-color:white;">
+						        
+						        		<aps-upload-file></aps-upload-file>
+						        
+								       <div style="margin-top:1%">
+								          	  <!-- <label for="input-file-id" class="md-button md-raised md-primary" style="margin-left: 10%;">Choose Files</label>	 -->									          	
+									          <input id="input-file-id" class="md-button md-raised md-primary"  style="width: 16%;margin-left: 10%;" file-model = "myFile" type="file" accept=".csv" />
+									          <md-button style="" class="md-raised md-primary" ng-click="uploadFile()">Upload</md-button>
+								        </div>
+									    
+					          			<div id="grid1" ui-grid-exporter
+										    ui-grid="gridOptions" 										    
+										    class="grid">			    
+										    </div>
+										    
+										    <div style="margin-right: 14%;">
+										   		<md-button style="float:right;" class="md-raised md-primary" ng-click="changeTab(1)">Next</md-button>
+								     			<!-- <md-button style="float:left;" class="md-raised md-warn">Warn</md-button> -->
+										    </div>	
+						        </md-content>
+					      </md-tab>
+					      <md-tab id="analyticsTab" label="Analytics" ng-disabled="isanalyticsTabDisabled">
+					        	 <md-content style="background-color:white;">	
+										    <md-whiteframe class="md-whiteframe-1dp" flex-sm="45" flex-gt-sm="35" style="max-width:100%;width:75%;margin-left:10%;margin-top:2%;" layout="" layout-align="center center">
+										    	<form class="workbookform" name="workbookform">
+    												 <md-input-container style="">
+											          	<label style="font-weight:bold;font-size: 12px;">WorkBook Name</label>											          	
+												          <input required="" name="workbookName" ng-model="analytics.workbookName">
+												          <div ng-messages="workbookform.workbookName.$error">
+												            <div ng-message="required">WorkBook Name required.</div>
+												          </div>										          
+												     </md-input-container>
+	     
+												     <md-input-container style="float:right">
+											          	<label style="font-weight:bold;font-size: 12px;">Domain Type</label>											          	
+												          <input required="" name="domainType" ng-model="analytics.domainType">
+												          <div ng-messages="workbookform.domainType.$error">
+												            <div ng-message="required">Domain Type required.</div>
+												          </div>
+												     </md-input-container>
+												    </form> 
+ 											</md-whiteframe>
+ 											
+ 											 <md-whiteframe class="md-whiteframe-1dp" flex-sm="45" flex-gt-sm="35" style="max-width:100%;width:75%;margin-left:10%;margin-top:2%;" layout="" layout-align="left left">
+										    	
+										    	<form class="groupingform" name="groupingform">
+    													<md-table-container>
+														    <table md-table>
+														      <thead style="background-color:#3f51b5;" md-head md-order="">
+														    
+														        <tr md-row>
+														          <th md-column align-rule="left" style="color:white;"><span>Coulmn Header</span></th>
+														          <th md-column align-rule="right" style="color:white;" md-order-by="price" md-numeric><span>Start Data</span></th>
+														          <th md-column align-rule="Center" style="color:white;" md-order-by="price" md-numeric><span>End Data</span></th>
+														          <th md-column align-rule="right" style="color:white;" ><span>Display As</span></th>
+														        </tr>
+														      </thead>
+														      <tbody md-body>
+														        <tr md-row ng-init="parentItemsindex = $index" ng-repeat="(key1, data) in analyticsdata | orderBy:filter">
+														        
+														        
+														        	
+															          <td md-cell>{{data.header}}</td>
+															          <td md-cell>{{data.startdata}}</td>
+															          <td md-cell>{{data.enddata}}</td>
+															          <td md-cell>
+														          
+														          <md-input-container class="md-block" flex-gt-sm="">
+															            <md-select ng-model="data.disp">
+															              <md-option  ng-repeat="state in states" value="{{state.abbrev}}">
+															                {{state.abbrev}}
+															              </md-option>
+															            </md-select>
+															      </md-input-container>
+															      
+          														  </td>
+														        </tr>
+														      </tbody>
+														    </table>
+  														</md-table-container>
+												    </form> 
+												    
+ 											</md-whiteframe>
+ 											
+ 										  <md-whiteframe class="md-whiteframe-1dp" flex-sm="45" flex-gt-sm="35" style="max-width:100%;width:75%;margin-left:10%;margin-top:2%;" layout="" layout-align="center center">
+										    	<form class="analyticsform" name="analyticsform">
+												      <md-input-container>
+												        <label style="font-weight:bold;font-size: 12px;">Start date</label>
+												        <md-datepicker required="" ng-model="analytics.startDate" name="myDate"></md-datepicker>
+												
+												        <div ng-messages="analyticsform.myDate.$error">
+												          <div ng-message="required">This date is required!</div>
+												        </div>
+												      </md-input-container>
+												      
+												       <md-input-container style="margin-left:2%">
+												        <label style="font-weight:bold;font-size: 12px;">End date</label>
+												        <md-datepicker required="" ng-model="analytics.endDate" name="myDate"></md-datepicker>
+												        <div ng-messages="analyticsform.myDate.$error">
+												          <div ng-message="required">This date is required!</div>
+												        </div>
+												      </md-input-container> 
+												      
+												       <md-input-container style="margin-left:2%;">
+													        <label style="font-weight:bold;font-size: 12px;">Predict Period</label>
+													        <input required="" type="number" step="any" name="predictPeriod" ng-model="analytics.predictPeriod">
+													      <div ng-messages="analyticsform.predictPeriod.$error">
+												            <div ng-message="required">Predict Period is required.</div>
+												          </div>
+												     </md-input-container>
+												     
+												     <md-input-container style="margin-left:2%;margin-bottom:8%;">
+												      	<p>Prediction Column <span class="radioValue"></span> </p>
+												        <md-radio-group ng-model="analytics.predictcolumn">
+														      <md-radio-button style="font-weight:bold;font-size: 12px;" value="Sales" class="md-primary">Sales</md-radio-button>
+														      <md-radio-button style="font-weight:bold;font-size: 12px;" value="Units"> Units </md-radio-button>
+    													</md-radio-group>
+    												</md-input-container> 
+												      
+												      <md-input-container style="margin-left:2%;">										      
+												      	<p>History Frequency <span class="radioValue"></span> </p>
+												        <md-radio-group ng-model="analytics.frequency">
+														      <md-radio-button style="font-weight:bold;font-size: 12px;" value="Monthly" class="md-primary">Monthly</md-radio-button>
+														      <md-radio-button style="font-weight:bold;font-size: 12px;" value="Weekly"> Weekly </md-radio-button>
+														      <md-radio-button style="font-weight:bold;font-size: 12px;" value="Quartely">Quartely</md-radio-button>
+														      <md-radio-button style="font-weight:bold;font-size: 12px;" value="Yearly">Yearly</md-radio-button>
+    													</md-radio-group>
+    												</md-input-container> 
+												      
+												    
+												    </form> 
+ 											</md-whiteframe>
+										    
+										    <div style="margin-right: 14%;margin-top:2%;">
+										   		<md-button style="float:right;" class="md-raised md-primary" ng-click="changeTab(2)" ng-disabled="analyticsform.$invalid || workbookform.$invalid">Next</md-button>
+								     		    <md-button style="float:right;" class="md-raised md-warn" ng-click="changeTab(0)">Previous</md-button>
+										    </div>	
+						        </md-content>
+				        </md-tab>
+					    <md-tab id="dashboardTab" label="Dashboard" ng-disabled="isdashboardTabDisabled" >
+					        		<md-content style="background-color:white;">	       
+					          				<div>
+													<chart value='basicAreaChart'></chart>
+											</div>
+										    
+										    <div style="margin-right: 14%;">
+										   		<!-- <md-button style="float:right;" class="md-raised md-primary" ng-click="changeTab(1)">Next</md-button> -->
+								     			<md-button style="float:right;" class="md-raised md-warn" ng-click="changeTab(1)">Previous</md-button>
+										    </div>	
+						        </md-content>
+				      </md-tab>
+    				</md-tabs> 
+			   </md-content>
+		      </div>
+    </main>
+    
+   <footer>
+      <md-toolbar class="md-scroll-shrink" style="min-height:40px;background-color:#3f51b5;">
+      </md-toolbar>
+    </footer> 
+</div>
+ 

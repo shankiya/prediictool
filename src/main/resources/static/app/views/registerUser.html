@@ -1,0 +1,59 @@
+<div class="loginPage" ng-controller="registerController">
+    <form class="registerForm" name="registerForm">
+    	 <h2 style="margin-top: -20px;height:10px;">Register</h2>
+    	 
+   	 	<div ng-show="register.errorMsg != null && register.errorMsg != ''">
+   	 	 	<div style = "color: red;">{{register.errorMsg}}</div>
+   	 	</div>
+	     
+	     <md-input-container style="height:30px;">
+          	<label style="font-weight:bold;">First Name</label>
+	          <input required="" name="firstName" ng-model="register.firstName">
+	          <div ng-messages="registerForm.firstName.$error">
+	            <div ng-message="required">First Name required.</div>
+	          </div>
+	     </md-input-container>
+	     
+	     <md-input-container style="height:30px;">
+          	<label style="font-weight:bold;">Last Name</label>
+	          <input required="" name="lastName" ng-model="register.lastName">
+	          <div ng-messages="registerForm.lastName.$error">
+	            <div ng-message="required">Last Name required.</div>
+	          </div>
+	     </md-input-container>
+	     
+	     <md-input-container style="height:30px;">
+          	<label style="font-weight:bold;">Username</label>
+	          <input required="" name="userName" ng-model="register.userName" >
+	          <div ng-messages="registerForm.userName.$error">
+	            <div ng-message="required">UserName required.</div>
+	          </div>
+	     </md-input-container>
+	     
+	      <md-input-container style="height:30px;">
+          	<label style="font-weight:bold;">Password</label>
+	          <input required="" type="password" name="password" ng-model="register.password">
+	          <div ng-messages="registerForm.password.$error">
+	            <div ng-message="required">Password required.</div>
+	          </div>
+	     </md-input-container>
+	     
+	     <md-input-container style="height:30px;">
+          	<label style="font-weight:bold;">Email-Id</label>
+	          <input required="" name="emailId" ng-model="register.emailId" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+	          <div ng-messages="registerForm.emailId.$error">
+	            <div ng-message="required">Email-Id required.</div>
+              <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
+           		 Invalid e-mail address.
+          	 </div>
+	          </div>
+	     </md-input-container>
+	     
+    <md-input-container style="height:20px;">
+        <md-button style="width: 90px;font-size:11px;font-weight: bold;border:solid;border-width:1.5px;" ng-click="registerFunction();" ng-disabled="registerForm.$invalid" >Register</md-button>
+        <md-button style="width: 90px;font-size:11px;font-weight: bold;border:solid;border-width:1.5px;" ui-sref="login" >Cancel</md-button>
+    </md-input-container> 
+      
+    </form> 
+</div>
+

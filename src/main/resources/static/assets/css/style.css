@@ -1,0 +1,439 @@
+* { box-sizing:border-box; }
+
+/* body {
+	font-family: Helvetica;
+  -webkit-font-smoothing: antialiased;
+} */
+
+html, body {
+	height: 100%;
+	overflow:auto;
+}
+
+.loginPage{
+	height: 100%;
+	overflow:auto;
+	
+    /* The image used */
+    background-image: url("../../assets/images/loginPageTwo.jpg");
+
+   /*  Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+} 
+
+.ext-content {
+  padding: 50px;
+  margin: 20px;
+  background-color: #FFF2E0; 
+}
+  
+.homePage{
+   height: 100%;
+   overflow:auto;
+   background-color:white;
+} 
+
+.routeViews{
+   height: 100%;
+   overflow:auto;
+} 
+
+main {
+  overflow-y: auto;
+}
+
+hgroup { 
+	text-align:center;
+	margin-top: 4em;
+}
+
+h1, h3 { font-weight: 300; }
+
+h1 { color: #636363; }
+
+h3 { color: #4a89dc; }
+
+h2 { text-align: center; }
+
+/* form {
+	width: 380px;
+	margin: 4em auto;
+	padding: 3em 2em 2em 2em;
+	background: #fafafa;
+	border: 1px solid lightgrey;
+	box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;
+} */
+
+.registerForm{
+	width: 290px;
+	margin: 4em auto;
+	padding: 3em 2em 2em 2em;
+	background: transparent;
+	border: 1px solid #ebebeb;
+	box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;
+}
+
+.loginForm{
+	width: 342px;
+	margin: 4em auto;
+	padding: 3em 2em 2em 2em;
+	background: transparent;
+	border: 1px solid #ebebeb;
+	box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;
+}
+
+.analyticsform{
+	width: 100%;
+}
+
+.workbookform{
+	width: 96%;
+}
+
+.groupingform{
+	width: 100%;	
+}
+
+
+
+.group { 
+	position: relative; 
+	margin-bottom: 45px; 
+}
+
+input {
+	font-size: 18px;
+	padding: 10px 10px 10px 5px;
+	-webkit-appearance: none;
+	display: block;
+	background: #fafafa;
+	color: #636363;
+	width: 100%;
+	border: none;
+	border-radius: 0;
+	border-bottom: 1px solid #757575;
+}
+
+input:focus { outline: none; }
+
+
+/* Label */
+
+/* label {
+	color: #999; 
+	font-size: 18px;
+	font-weight: normal;
+	position: absolute;
+	pointer-events: none;
+	left: 5px;
+	top: 10px;
+	transition: all 0.2s ease;
+} */
+
+
+/* active */
+
+input:focus ~ label, input.used ~ label {
+	top: -20px;
+  transform: scale(.75); left: -2px;
+	/* font-size: 14px; */
+	color: #4a89dc;
+}
+
+
+/* Underline */
+
+.bar {
+	position: relative;
+	display: block;
+	width: 100%;
+}
+
+.bar:before, .bar:after {
+	content: '';
+	height: 2px; 
+	width: 0;
+	bottom: 1px; 
+	position: absolute;
+	background: #4a89dc; 
+	transition: all 0.2s ease;
+}
+
+.bar:before { left: 50%; }
+
+.bar:after { right: 50%; }
+
+
+/* active */
+
+input:focus ~ .bar:before, input:focus ~ .bar:after { width: 50%; }
+
+
+/* Highlight */
+
+.highlight {
+	position: absolute;
+	height: 60%; 
+	width: 100px; 
+	top: 25%; 
+	left: 0;
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+
+/* active */
+
+input:focus ~ .highlight {
+	animation: inputHighlighter 0.3s ease;
+}
+
+
+/* Animations */
+
+@keyframes inputHighlighter {
+	from { background: #4a89dc; }
+	to 	{ width: 0; background: transparent; }
+}
+
+
+/* Button */
+
+.button {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  margin: .3em 0 1em 0;
+  width: 100%;
+  vertical-align: middle;
+  color: #fff;
+  font-size: 16px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  letter-spacing: 1px;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #3160B6;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.button:focus { outline: 0; }
+
+
+/* Button modifiers */
+
+.buttonBlue {
+  background: #4a89dc;
+  text-shadow: 1px 1px 0 rgba(39, 110, 204, .5);
+}
+
+.buttonBlue:hover { background: #357bd8; }
+
+
+/* Ripples container */
+
+.ripples {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+
+
+/* Ripples circle */
+
+.ripplesCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.ripples.is-active .ripplesCircle {
+  animation: ripples .4s ease-in;
+}
+
+
+/* Ripples animation */
+
+@keyframes ripples {
+  0% { opacity: 0; }
+
+  25% { opacity: 1; }
+
+  100% {
+    width: 200%;
+    padding-bottom: 200%;
+    opacity: 0;
+  }
+}
+
+footer { text-align: center; }
+
+footer p {
+	color: #888;
+	font-size: 13px;
+	letter-spacing: .4px;
+}
+
+footer a {
+	color: #4a89dc;
+	text-decoration: none;
+	transition: all .2s ease;
+}
+
+footer a:hover {
+	color: #666;
+	text-decoration: underline;
+}
+
+footer img {
+	width: 80px;
+	transition: all .2s ease;
+}
+
+footer img:hover { opacity: .83; }
+
+footer img:focus , footer a:focus { outline: none; }
+
+.menu-panel-container {
+  pointer-events: auto;
+}
+
+.menu-panel {
+  width: 256px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.menu-panel .menu-divider {
+  width: 100%;
+  height: 1px;
+  min-height: 1px;
+  max-height: 1px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  background-color: rgba(0, 0, 0, 0.11);
+}
+
+.menu-panel .menu-content {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+  max-height: 305px;
+  overflow-y: auto;
+  min-width: 256px;
+}
+
+.menu-panel .menu-item {
+  display: flex;
+  flex-direction: row;
+  min-height: 48px;
+  height: 48px;
+  align-content: center;
+  justify-content: flex-start;
+}
+.menu-panel .menu-item > * {
+  width: 100%;
+  margin: auto 0;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.menu-panel .menu-item > a.md-button {
+  padding-top: 5px;
+}
+.menu-panel .menu-item > .md-button {
+  display: inline-block;
+  border-radius: 0;
+  margin: auto 0;
+  font-size: 15px;
+  text-transform: none;
+  font-weight: 400;
+  height: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+  width: 100%;
+  text-align: left;
+}
+.menu-panel .menu-item > .md-button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+.menu-panel .menu-item > .md-button md-icon {
+  margin: auto 16px auto 0;
+}
+.menu-panel .menu-item > .md-button p {
+  display: inline-block;
+  margin: auto;
+}
+.menu-panel .menu-item > .md-button span {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.menu-panel .menu-item > .md-button .md-ripple-container {
+  border-radius: inherit;
+}
+
+
+/*
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+*/
+
+/*for grid*/
+
+.grid {
+  width: 75%;
+  height: 100%;
+  margin-left: 10%;
+}
+.modalGrid {
+  width: 100px;
+  height: 200px;
+}
+.modal-dialog {
+  width: 150px;
+}
+
+
+.ui-grid-header-cell-wrapper .ui-grid-header-cell:first-child .ui-grid-column-resizer.left {
+  width: 2px;
+  border: 2px solid #ff0000;
+}
+
+
+.tabcontent .md-padding{
+	height:100%;
+	background-color:white;
+}
+
+tbody {
+display:block;
+height:250px;
+overflow:auto;
+}
+
+thead, tbody tr {
+display:table;
+width:100%;
+table-layout:fixed;/* even columns width , fix width of table too*/
+}
+/*thead {
+width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width *
+}
+*/
+table {
+width:400px;
+}
